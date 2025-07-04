@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 40px;
+    font-size: 50px;
+}
+
+#container {
+    background-color: #0000ff;
+    flex-wrap: wrap;
+    height: 980px;
+    width: 980px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+
+#container div {
+    background-color: peachpuff;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+}
+
