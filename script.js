@@ -1,34 +1,54 @@
-// Add a button that creates a x*x grid
-const body = document.querySelector("body");
-const btn = document.createElement("button");
-btn.textContent = "Choose size";
-const container = document.getElementById("container");
-body.insertBefore(btn, container);
+// Add a button that resizes the grid
+const resize = document.getElementById("resize");
+let size;
 
 
-btn.addEventListener("click", () => {
-    container.innerHTML = "";
+resize.addEventListener("click", () => {
     let ans = window.prompt("Enter number of squares per side (max 100): ");
     while (isNaN(ans) || +ans > 100 || ans <= 0) {
         ans = window.prompt("Invalid answer, please choose another size!");
     }
-    createGrid(parseInt(ans));
+    size = parseInt(ans);
+    createGrid(size);
 })
 
 
-// Create a grid by using flexbox
-let containerSize = container.getBoundingClientRect().width;
-let containerP = parseInt(getComputedStyle(container).padding);
-
+// Create and resize a new grid by using flexbox
+const container = document.getElementById("container");
 
 function createGrid(size) {
+    container.innerHTML = "";
+
+    let containerSize = container.getBoundingClientRect().width;
+
     for (let i = 0; i < size * size;i++) {
-        let div = document.createElement("div");
-        div.style.width = `${parseInt((containerSize - containerP * 2) / size)}px`;
-        div.style.height = div.style.width;
-        container.appendChild(div);
-        div.addEventListener("mouseenter", () => {
-            div.style.backgroundColor = "red";
+        let square = document.createElement("div");
+        square.classList.add("square");
+        square.style.flexBasis = `${100 / size}%`;
+        square.style.height = `${100 / size}%`;
+        square.style.width = `${100 / size}%`;
+        container.appendChild(square);
+
+        let max = 255;
+        let min = 0; 
+
+        square.addEventListener("mouseenter", () => {
+            let random1 = Math.floor(Math.random() * (max - min + 1)) + min;
+            let random2 = Math.floor(Math.random() * (max - min + 1)) + min;
+            let random3 = Math.floor(Math.random() * (max - min + 1)) + min;
+            square.style.backgroundColor = `rgb(${random1}, ${random2}, ${random3})`;
         })
     }
 }
+
+// Reset the grid
+const reset = document.getElementById("reset");
+reset.addEventListener("click", () => {
+    container.innerHTML = "";
+    const squares = document.querySelectorAll(".square");
+    squares.forEach((square) => 
+        square.setAttribute("style", "background: peachpuff"));
+    createGrid(size);
+})
+
+
