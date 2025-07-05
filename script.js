@@ -51,4 +51,14 @@ reset.addEventListener("click", () => {
     createGrid(size);
 })
 
+// Eraser
+const erase = document.getElementById("eraser");
+erase.addEventListener("click", () => {
+    const allsquares = document.querySelectorAll(".square");
+    allsquares.forEach((square) => {
+        square.addEventListener("mouseenter", () => { 
+            square.style.backgroundColor = "peachpuff";
+        })
+    })
+})
 
