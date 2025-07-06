@@ -41,7 +41,7 @@ header h1 {
     height: 50px;
     width: 150px;
     border-radius: 5px;
-    background-color: gray;
+    background-color: rgb(233, 232, 232);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
